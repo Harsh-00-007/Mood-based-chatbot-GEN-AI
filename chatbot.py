@@ -3,7 +3,7 @@ from langchain_groq import ChatGroq
 from langchain_core.messages import AIMessage , SystemMessage , HumanMessage
 load_dotenv()
 
-# Primary model (Gemini 3.5)
+# Initialize the model with high temperature for creative chatting
 primary_model = ChatGroq(
     model="llama-3.3-70b-versatile",
     temperature=0.7
@@ -21,16 +21,17 @@ else :
 messages= [
     SystemMessage(content=mode)
 ]
-print("__________Type exit to end____________\n")
 while True:
-    
-    prompt = input("YOU: ")
-    messages.append(HumanMessage(content=prompt))
-    if prompt=="exit":
+    prompt = input("YOU: ").strip()
+    if prompt.lower() == "exit":
         break
-    response = primary_model.invoke(messages)
-    messages.append(AIMessage(content=response.content))
-    print(f"BOT: {response.content}")
-
-print(messages)
-
+    if not prompt:
+        continue
+    messages.append(HumanMessage(content=prompt))
+    
+    try:
+        response = primary_model.invoke(messages)
+        messages.append(AIMessage(content=response.content))
+        print(f"BOT: {response.content}\n")
+    except Exception as e:
+        print(f"\n[SYSTEM ERROR]: {e}\n")
