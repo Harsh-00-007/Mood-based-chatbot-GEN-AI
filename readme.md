@@ -1,18 +1,26 @@
-# 🎭 Mood-Based AI Chatbot
+# 🚀 Enterprise AI Solutions Dashboard
 
-A dynamic, stateful conversational agent built with **Python**, **Streamlit**, and **LangChain**. This application utilizes the **LLaMA 3.3 70B** model via the **Groq API** to deliver high-speed inference while seamlessly switching between distinct AI personas (Angry, Sad, Funny) using engineered system prompts.
-
-## 🚀 Features
-
-* **Dynamic Prompt Engineering:** Modifies the underlying System Messages at runtime to dictate the LLM's personality and constraints.
-* **Stateful Memory:** Leverages Streamlit's `session_state` to maintain continuous chat history and context across UI reruns.
-* **High-Speed Inference:** Powered by the Groq LPU inference engine for near-instantaneous text generation.
-* **Modern UI:** Clean, responsive chat interface built natively with Streamlit components.
+A multi-tool, stateful web application built with **Python**, **Streamlit**, and **LangChain**. This application utilizes the **LLaMA 3.3 70B** model via the ultra-low latency **Groq API** inference engine to showcase two distinct AI architectures: deterministic data extraction and dynamic conversational memory.
 
 ## 🛠️ Tech Stack
 
 * **Language:** Python 3.10+
-* **Framework:** Streamlit
+* **Framework:** Streamlit (Multi-tab UI & Session State)
 * **LLM Orchestration:** LangChain (`langchain-groq`, `langchain-core`)
+* **Data Validation:** Pydantic
 * **Model:** LLaMA 3.3 70B Versatile
 * **Environment Management:** `python-dotenv`
+
+## 📊 Features & Architecture
+
+### 1. B2B Mobile Inventory Extractor
+An enterprise-grade tool that converts unstructured user queries into strict, database-ready JSON schemas.
+* **Structured Outputs:** Leverages LangChain's `with_structured_output` and strict Pydantic schemas to enforce data shape and prevent hallucinations.
+* **Deterministic Configuration:** Operates at `0.1` temperature to ensure high factual accuracy when extracting hardware specifications, pricing, and variants.
+* **Fault Tolerance:** Built-in safeguards to return "N/A" for out-of-context data rather than generating false information.
+
+### 2. Interactive Persona Chatbot
+A dynamic conversational agent that alters its behavioral parameters seamlessly at runtime.
+* **Dynamic Prompt Engineering:** Modifies the underlying LangChain `SystemMessage` based on user UI selection to dictate the LLM's personality constraints (Angry, Sad, Funny).
+* **Stateful Memory:** Leverages Streamlit's `session_state` to maintain continuous chat history and contextual awareness across interface reruns.
+* **Dynamic UI Rendering:** Automatically updates visual avatars and roles based on the active system prompt.
